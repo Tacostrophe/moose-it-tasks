@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-export NODE_PATH='/home/tacostrophe/devNodeJS/moose-it-tasks/sprint_1/venv/lib/node_modules'
-export NPM_CONFIG_PREFIX='/home/tacostrophe/devNodeJS/moose-it-tasks/sprint_1/venv'
-export npm_config_prefix='/home/tacostrophe/devNodeJS/moose-it-tasks/sprint_1/venv'
-exec 'venv/bin/node' "$@"

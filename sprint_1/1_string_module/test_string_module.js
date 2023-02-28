@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const {
   capitalize,
   correctText,
@@ -16,15 +17,15 @@ function testFunction(func, cases) {
   return report;
 }
 
+console.log('Testing capitalize');
 let testCases = [
   ['abcde', 'Abcde'],
   ['', ''],
   ['a', 'A'],
 ];
-
-console.log('Testing capitalize');
 console.log(testFunction(capitalize, testCases));
 
+console.log('\nTesting correctText');
 const largeText = 'Вот пример строки,в которой     используются знаки препинания.'
 + 'После знаков должны стоять пробелы , а перед знаками их быть не должно .'
 + '    Если есть лишние подряд идущие пробелы, они должны быть устранены.';
@@ -39,10 +40,9 @@ testCases = [
   [',,..::', ', , . . : :'],
   ['some, text', 'some, text'],
 ];
-
-console.log('\nTesting correctText');
 console.log(testFunction(correctText, testCases));
 
+console.log('\nTesting countWords');
 testCases = [
   ['Текст, в котором слово текст несколько раз встречается и слово тоже', 11],
   ['', 0],
@@ -50,8 +50,6 @@ testCases = [
   ['onewordstring', 1],
   [' two   ,  words  ', 2],
 ];
-
-console.log('\nTesting countWords');
 console.log(testFunction(countWords, testCases));
 
 console.log('\nTesting countUniqueWords');

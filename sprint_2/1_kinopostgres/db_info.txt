@@ -1,0 +1,44 @@
+- column_1:  
+  - poster; (film.poster_path)
+  - trailer; (film.trailer_path)
+  
+- column_2:
+  - row_1:
+    - subcolumn_1:
+      - title; (film.title)
+      - description; (film.description)
+      - audio_tracks; (film_language.language_id WHERE film_language.film_id = film.id AND film_language.audio_track_path IS NOT NULL)
+      - subtitles; (film_language.language_id WHERE film_language.film_id = film.id AND film_language.subtitles IS NOT NULL)
+      - video_quality; (film.video_quality)
+      - watching_services_online;?
+    - subcolumn_2:
+      - film_rating; (AVG(film_user.rating) WHERE film_user.film_id = film.id)
+      - reviews; (COUNT(film_user) WHERE (film_user.film_id = film.id AND film_user.review IS NOT NULL))
+  - row_2(about_film):
+    - subcolumn_1:
+      - production_year; (film.production_year)
+      - production_country; (film.production_country)
+      - genre; (film_genre.genre_id WHERE film_genre.film_id = film.id)
+      - film_slogan; (film.slogan)
+      - director; (film.director)
+      - screenwriter; (film.screenwriter)
+      - producer; (film.producer)
+      - operator; (film.operator)
+      - composer; (film.composer)
+      - editor; (film.editor)
+      - budget; (film.budget)
+      - marketing; (film.marketing)
+      - fees_us; (film_country.fees WHERE film_country.film_id = film.id AND film_country.country_id = country.id (USA))
+      - fees_world; (SUM(film_country.fees) WHERE film_country.film_id = film.id AND film_country.country_id != country.id (USA))
+      - veiwers; (film_country.veiwers WHERE film_country.film_id = film.id AND film_country.county_id = country.id)
+      - premiere_russia; (film_country.premiere_date WHERE film_country.film_id = film.id AND film_country.county_id = country.id (Russia))
+      - premiere_world; (film_country.premiere_date WHERE film_country.film_id = film.id AND film_country.county_id = country.id)
+      - dvd_release; (film.dvd_release)
+      - age_limit; (film.age_limit)
+      - mpaa_rating; (film.mpaa_rating)
+      - duration; (film.duration_min)
+    - subcolumn_2;
+      - cast; (film_person.person_id WHERE film_person.film_id = film.id AND film_person.dubbed = false)
+      - cast_dub; (film_person.person_id WHERE film_person.film_id = film.id AND film_person.dubbed = true)
+      - awards; (film_award.award_id WHERE film_award.film_id = film.id)
+

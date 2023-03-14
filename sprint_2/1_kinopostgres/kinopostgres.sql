@@ -62,7 +62,7 @@ CREATE TABLE film (
 
 CREATE TABLE film_user (
     film_id integer REFERENCES film,
-    user_id integer REFERENCES kino_user,
+    user_id integer REFERENCES kino_user UNIQUE,
     rating integer NOT NULL CHECK (rating BETWEEN 1 AND 10),
     review text,
     PRIMARY KEY (film_id, user_id)

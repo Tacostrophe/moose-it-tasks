@@ -1,3 +1,5 @@
+Ниже описана информация о фильме на странице по порядку расположения на странице с разбивкой на блоки html.
+
 - column_1:  
   - poster; (film.poster_path)
   - trailer; (film.trailer_path)
@@ -17,7 +19,7 @@
   - row_2(about_film):
     - subcolumn_1:
       - production_year; (film.production_year)
-      - production_country; (film.production_country)
+      - production_country; (film.production_country_id)
       - genre; (film_genre.genre_id WHERE film_genre.film_id = film.id)
       - film_slogan; (film.slogan)
       - director; (film.director)

@@ -53,8 +53,8 @@ CREATE TABLE film (
     composer_id integer REFERENCES person,
     artist_id integer REFERENCES person,
     editor_id integer REFERENCES person,
-    budget money,
-    marketing money,
+    budget numeric,
+    marketing numeric,
     dvd_release date,
     age_limit integer CHECK( age_limit > 0),
     mpaa_rating varchar(5) CHECK ( mpaa_rating IN ('G', 'PG', 'PG-13', 'R', 'NC-17')),
@@ -72,7 +72,7 @@ CREATE TABLE film_user (
 CREATE TABLE film_country (
     film_id integer REFERENCES film,
     country_id integer REFERENCES country,
-    fees integer CHECK (fees > 0),
+    fees numeric CHECK (fees > 0),
     viewers integer CHECK (viewers > 0),
     premiere_date date
 );

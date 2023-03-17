@@ -1,9 +1,15 @@
 /* eslint-disable class-methods-use-this */
+const Controller = require('./base.controller');
 const db = require('../db');
 
-class GenreController {
+class GenreController extends Controller {
   async create(request, response) {
     const { name } = request.body;
+    if (super.containUndefined(name)) {
+      response.end('Wrong input');
+      return;
+    }
+
     const newGenre = await db.query(
       'INSERT INTO genre (name) VALUES ($1) RETURNING *;',
       [name],
@@ -27,6 +33,11 @@ class GenreController {
 
   async update(request, response) {
     const { pk, name } = request.body;
+    if (super.containUndefined(pk, name)) {
+      response.end('Wrong input');
+      return;
+    }
+
     const updatedGenre = await db.query(
       'UPDATE genre SET name=$1 WHERE pk=$2 RETURNING *',
       [name, pk],

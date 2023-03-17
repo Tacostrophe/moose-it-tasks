@@ -1,9 +1,15 @@
 /* eslint-disable class-methods-use-this */
+const Controller = require('./base.controller');
 const db = require('../db');
 
-class FilmController {
+class FilmController extends Controller {
   async create(request, response) {
     const { name, releaseYear, genresPk } = request.body;
+    if (super.containUndefined(name, releaseYear, genresPk)) {
+      response.end('Wrong input');
+      return;
+    }
+
     const newFilm = await db.query(
       'INSERT INTO film (name, releaseYear) VALUES ($1, $2) RETURNING *;',
       [name, releaseYear],
@@ -71,6 +77,10 @@ class FilmController {
     const {
       pk, name, releaseYear, genresPk,
     } = request.body;
+    if (super.containUndefined(pk, name, releaseYear, genresPk)) {
+      response.end('Wrong input');
+      return;
+    }
 
     const updatedFilm = await db.query(
       'UPDATE film SET name=$1, releaseYear=$2 WHERE pk=$3 RETURNING *',

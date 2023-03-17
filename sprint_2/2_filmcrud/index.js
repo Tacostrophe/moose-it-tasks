@@ -1,7 +1,10 @@
 /* eslint-disable no-console */
 const express = require('express');
+const dotenv = require('dotenv');
 const filmRouter = require('./routes/film.routes');
 const genreRouter = require('./routes/genre.routes');
+
+dotenv.config();
 
 const PORT = process.env.PORT ?? 8080;
 

@@ -107,7 +107,7 @@ dist
 
 # NestJS .gitignore
 
-/git
+/not_a_git
 nest_gitignore
 
 # compiled output
